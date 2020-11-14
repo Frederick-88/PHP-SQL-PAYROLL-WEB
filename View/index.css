@@ -1,0 +1,31 @@
+/* My Class */
+body {
+  font-family: "Questrial", sans-serif !important;
+}
+.welcome-text {
+  font-size: 3.5rem;
+}
+.home__bg {
+  min-height: 100vh;
+  background-image: url(https://image.freepik.com/free-vector/abstract-orange-watercolor-brush-stroke-background_1035-18647.jpg);
+  background-size: cover;
+}
+.home__card-icon {
+  display: flex;
+  justify-content: center;
+  font-size: 5rem;
+}
+
+/* Modify Bootstrap class */
+.navbar-toggler {
+  outline: 5px auto -webkit-focus-ring-color;
+}
+
+@media screen and (max-width: 600px) {
+  .logout-btn {
+    margin-top: 1rem;
+  }
+  .welcome-text {
+    font-size: 2rem;
+  }
+}

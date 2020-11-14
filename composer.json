@@ -1,0 +1,12 @@
+{
+  "name": "frederick-88/payroll-php-app",
+  "authors": [
+    {
+      "name": "Chen Frederick",
+      "email": "fred88yt@gmail.com"
+    }
+  ],
+  "require": {
+    "phpmailer/phpmailer": "^6.1"
+  }
+}

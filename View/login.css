@@ -1,0 +1,13 @@
+/* My Class */
+body {
+  font-family: "Questrial", sans-serif !important;
+}
+.login__bg {
+  align-items: center;
+  min-height: 100vh;
+  background-image: url(https://www.gethppy.com/wp-content/uploads/2016/09/Designing-an-Agile-Company-Culture.jpg);
+  background-size: cover;
+}
+.login__modal {
+  border-radius: 10px;
+}

@@ -1,0 +1,11 @@
+.check-user-salary {
+  margin-top: 0.75rem;
+}
+@media screen and (max-width: 600px) {
+  .edit-btn {
+    margin-bottom: 0.5rem;
+  }
+  .check-user-salary {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,55 @@
+/* rewrite bootstrap class */
+.card-text {
+  font-size: 0.85rem !important;
+}
+.employee-img {
+  height: 10rem;
+  object-fit: contain;
+  background-color: rgb(235, 235, 235);
+}
+.icon-edit {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #28a745;
+  top: 5px;
+  left: 5px;
+  font-size: 20px;
+  padding: 4px 10px;
+  border-radius: 50%;
+  /* remove outline/border of :focus fx */
+  outline: none !important;
+  border: none;
+}
+.icon-edit:hover {
+  background-color: #28a745;
+  color: white;
+  transition: 0.3s;
+}
+.icon-delete {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #dc3545;
+  top: 5px;
+  right: 0;
+  font-size: 20px;
+  padding: 4px 10px;
+  border-radius: 50%;
+  /* remove outline/border of :focus fx */
+  outline: none !important;
+  border: none;
+}
+.icon-delete:hover {
+  background-color: #dc3545;
+  color: white;
+  transition: 0.3s;
+}
+@media screen and (max-width: 768px) {
+  .icon-edit {
+    font-size: 18px;
+    padding: 3px 8px;
+  }
+  .icon-delete {
+    font-size: 18px;
+    padding: 3px 8px;
+  }
+}

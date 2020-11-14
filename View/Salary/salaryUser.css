@@ -1,0 +1,32 @@
+.home__bg {
+  min-height: 100vh;
+  background-image: url(https://image.freepik.com/free-vector/abstract-orange-watercolor-brush-stroke-background_1035-18647.jpg);
+  background-size: cover;
+}
+.main-center-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.salary-user-card {
+  width: 30rem;
+}
+.salary-user-card-image {
+  height: 15rem;
+  object-fit: contain;
+  background-color: lightgray;
+}
+
+@media screen and (max-width: 600px) {
+  .home__bg {
+    min-height: 50vh;
+  }
+  .main-center-container {
+    height: 50vh;
+  }
+  .salary-text {
+    font-size: 3rem;
+  }
+}
