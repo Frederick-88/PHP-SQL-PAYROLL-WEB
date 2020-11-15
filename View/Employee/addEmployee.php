@@ -60,11 +60,11 @@
                     <option disabled selected>Select Job Role</option>
                     <?php
                     require_once '/xampp/htdocs/PSW-SEM3/Payroll/Library/connection.php';
-                    $data = $connection->query("SELECT * FROM job_position");
+                    $data = $connection->query("SELECT *,job.id AS jobId FROM job_position JOIN department ON job_position.dept_id = department.id");
 
                     while ($roles = $data->fetch_assoc()) :
                     ?>
-                        <option value="<?= $roles['id'] ?>"><?= $roles['dept_code'] ?> - <?= $roles['job_label'] ?></option>
+                        <option value="<?= $roles['jobId'] ?>"><?= $roles['dept_code'] ?> - <?= $roles['job_label'] ?></option>
                     <?php
                     endwhile;
                     ?>
