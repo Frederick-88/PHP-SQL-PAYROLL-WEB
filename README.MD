@@ -1,16 +1,10 @@
 ### PHP-SQL-PAYROLL WEB
 
-PHP DATE HANDLING
-$date = date('Y-m-d', (strtotime($dateBeforeConvert)));
+#### Note/Description Here
 
-Note, still issue in :
+#### Feature :
 
-1. department side -> couldn't fetch all department
-2. session start for all page
-
-what we still need to do :
-
-1. different UI for users
-2. employee edit ( i think delete add working already )
-3. email-forgot password/verify feature
-4. TIdy the code and file
+- CRUD of 6 tables inside 1 DB (Soon, all gonna working well)
+- Saving history of salary paid.
+- Send Email Verification Feature every time register
+- Validation for is-verify(?) when Login & Resend Email Verification Feature
