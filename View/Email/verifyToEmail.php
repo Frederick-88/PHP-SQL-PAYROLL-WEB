@@ -231,7 +231,7 @@
                                             <a href="">%link%</a>
                                         </div>
                                         <!-- Action -->
-                                        <p style="text-align: center;">Thanks, <br>AIA X FDTECH</p>
+                                        <p style="text-align: center; margin-top: 10px;">Thanks, <br>AIA X FDTECH</p>
                                     </td>
                                 </tr>
                             </table>
