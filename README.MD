@@ -1,4 +1,4 @@
-##### PHP-SQL-PAYROLL WEB
+### PHP-SQL-PAYROLL WEB
 
 PHP DATE HANDLING
 $date = date('Y-m-d', (strtotime($dateBeforeConvert)));
