@@ -1,4 +1,4 @@
-<?php require_once '../../Model/loginController.php'; ?>
+<?php require_once '../../Model/Auth/loginController.php'; ?>
 <?php if (!isset($_SESSION['login'])) {
     $_SESSION['response'] = "Hey there, please login first =)";
     $_SESSION['res-type'] = "danger";

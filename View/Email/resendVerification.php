@@ -21,7 +21,7 @@
 </style>
 
 <body>
-    <?php require_once "../../Model/registerController.php" ?>
+    <?php require_once "../../Model/Auth/registerController.php" ?>
     <div class="container vh-100">
         <div class="main-center-container">
             <div class="border p-4 border-warning">
@@ -29,7 +29,7 @@
 
                 <h4>Want to resent verification email? </h4>
                 <p>Input your email below, we will send you an email to verify your account.</p>
-                <form action="../../Model/registerController.php" method="POST" enctype="multipart/form-data">
+                <form action="../../Model/Auth/registerController.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="email">Email Address<span class="text-danger">*</span></label>
                         <input type="email" name="email" id="email" class="form-control" placeholder="Please input your email here." required>

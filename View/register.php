@@ -1,4 +1,4 @@
-<?php include '../Model/registerController.php' ?>
+<?php include '../Model/Auth/registerController.php' ?>
 <?php if (isset($_SESSION['login'])) {
     header('location:./index.php');
 } ?>
@@ -23,7 +23,7 @@
                     <div class="login__modal p-5 bg-warning text-white">
                         <h3 class="font-weight-bold text-center">AIA-REGISTER</h3>
                         <?php include '../Component/Alert.php' ?>
-                        <form action="../Model/registerController.php" method="POST">
+                        <form action="../Model/Auth/registerController.php" method="POST">
                             <div class="form-group">
                                 <label for="register-email">New Email address</label>
                                 <input type="email" name="register-email" class="form-control" id="register-email" placeholder="Enter email">

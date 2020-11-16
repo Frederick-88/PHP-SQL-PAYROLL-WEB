@@ -28,7 +28,7 @@
     ?>
     <div class="container-fluid vh-100">
         <div class="main-center-container">
-            <form action="../../Model/registerController.php" method="POST">
+            <form action="../../Model/Auth/registerController.php" method="POST">
                 <div class="card no-border p-4">
                     <div class="card-body">
                         <h5 class="card-title mb-2 text-center font-weight-bold border-bottom">FDTECH X AIA</h5>

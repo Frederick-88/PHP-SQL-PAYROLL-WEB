@@ -17,9 +17,9 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="login__modal p-5 bg-warning text-white">
                         <h3 class="font-weight-bold text-center">AIA-LOGIN</h3>
-                        <?php include '../Model/loginController.php' ?>
+                        <?php include '../Model/Auth/loginController.php' ?>
                         <?php include '../Component/Alert.php' ?>
-                        <form action="../Model/loginController.php" method="POST">
+                        <form action="../Model/Auth/loginController.php" method="POST">
                             <div class="form-group">
                                 <label for="login-email">Email address</label>
                                 <input type="email" class="form-control" name="login-email" id="login-email" placeholder="Enter email" required>

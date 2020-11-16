@@ -23,7 +23,7 @@ if (isset($_POST['register-user'])) {
     $emailVerifyToken = bin2hex(random_bytes(50)); // generate unique token
 
     // send-email needs
-    $message = file_get_contents('../View/Email/verifyToEmail.php');
+    $message = file_get_contents('../../View/Email/verifyToEmail.php');
     $message = str_replace('%fullname%', $fullname, $message);
     $message = str_replace('%link%', "http://localhost/PSW-SEM3/Payroll/View/Auth/verifyAccount.php?token=" . $emailVerifyToken . "&email=" . $email, $message);
     $message = str_replace('%year%', date("Y"), $message);
@@ -71,15 +71,15 @@ if (isset($_POST['register-user'])) {
                 $_SESSION['response'] = "failed to send email" . $mail->ErrorInfo;
                 $_SESSION['res-type'] = "danger";
 
-                header('location:../View/register.php');
+                header('location:../../View/register.php');
                 exit();
             } else {
                 $_SESSION['email'] = $email;
                 $_SESSION['verified'] = false;
                 $_SESSION['response'] = 'Account success registered! Please do verify on your registered email.';
                 $_SESSION['res-type'] = 'success';
-                // header('location: ../View/login.php');
-                echo "<script>window.location.assign('../View/login.php')</script>";
+                // header('location: ../../View/login.php');
+                echo "<script>window.location.assign('../../View/login.php')</script>";
                 exit();
             }
         } else {
@@ -89,7 +89,7 @@ if (isset($_POST['register-user'])) {
         $_SESSION['response'] = $errors['register-email'];
         $_SESSION['res-type'] = "danger";
 
-        header('location: ../view/register.php');
+        header('location: ../../view/register.php');
     }
 }
 
@@ -106,14 +106,14 @@ if (isset($_POST['verify_account'])) {
         $_SESSION['response']  = "Sorry, Failed to verify your account.";
         $_SESSION['res-type'] = "danger";
 
-        header('location: ../View/login.php');
+        header('location: ../../View/login.php');
     }
 
     $_SESSION['response']    = 'Your account have been successfully verified!';
     $_SESSION['res-type']   = 'success';
 
     // Back to Index
-    header("location: ../View/login.php");
+    header("location: ../../View/login.php");
 }
 
 // Resend Verification Email
@@ -131,7 +131,7 @@ if (isset($_POST['resend_verification'])) {
 
         $fullname     = $user['fullname'];
         // prepare email needs
-        $message = file_get_contents('../View/Email/verifyToEmail.php');
+        $message = file_get_contents('../../View/Email/verifyToEmail.php');
         $message = str_replace('%fullname%', $fullname, $message);
         $message = str_replace('%link%', "http://localhost/PSW-SEM3/Payroll/View/Auth/verifyAccount.php?token=" . $emailVerifyToken . "&email=" . $email, $message);
         $message = str_replace('%year%', date("Y"), $message);
@@ -160,7 +160,7 @@ if (isset($_POST['resend_verification'])) {
             $_SESSION['response'] = "failed to send email" . $mail->ErrorInfo;
             $_SESSION['res-type'] = "danger";
 
-            header('location:../View/Email/resendVerification.php');
+            header('location:../../View/Email/resendVerification.php');
             exit();
         } else {
             $_SESSION['fullname']   = $fullname;
@@ -169,8 +169,7 @@ if (isset($_POST['resend_verification'])) {
             $_SESSION['response']    = 'Success Resend Verification Email! Please check your inbox.';
             $_SESSION['res-type']   = 'success';
 
-            // header('location:../../View/auth/register.php');
-            echo "<script>window.location.assign('../View/Email/resendVerification.php')</script>";
+            echo "<script>window.location.assign('../../View/Email/resendVerification.php')</script>";
             exit();
         }
     } else {
@@ -181,6 +180,6 @@ if (isset($_POST['resend_verification'])) {
         $_SESSION['response']     = $errors['verify_fail'];
         $_SESSION['res-type']    = "danger";
 
-        header('location: ../View/Email/resendVerification.php');
+        header('location: ../../View/Email/resendVerification.php');
     }
 }

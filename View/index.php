@@ -1,4 +1,4 @@
-<?php require_once '../Model/loginController.php'; ?>
+<?php require_once '../Model/Auth/loginController.php'; ?>
 <?php if (!isset($_SESSION['login'])) {
     $_SESSION['response'] = "Hey there, please login first =)";
     $_SESSION['res-type'] = "danger";
@@ -37,7 +37,7 @@
                         <a class="nav-item nav-link text-dark" href="./Department/department.php">Department</a>
                         <a class="nav-item nav-link text-dark" href="./Job/job.php">Job Roles</a>
                         <a class="nav-item nav-link text-dark" href="./Education/education.php">Educations</a>
-                        <a href="../Model/logoutController.php" class="btn btn-light logout-btn ml-3">Logout <i class="fas fa-sign-out-alt"></i></a>
+                        <a href="../Model/Auth/logoutController.php" class="btn btn-light logout-btn ml-3">Logout <i class="fas fa-sign-out-alt"></i></a>
                     </div>
                 </div>
             </div>
