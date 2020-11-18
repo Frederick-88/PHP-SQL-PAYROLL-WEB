@@ -21,10 +21,19 @@
         <h3 class="text-center font-weight-bold mt-5 mb-3">Add Job Info</h3>
         <!-- change below -->
         <form action="../../Model/jobController.php" method="POST">
-            <!-- option -->
             <div class="form-group">
                 <label>Department Code</label>
-                <input type="text" name="dept_code" class="form-control" placeholder="Department Code" required>
+                <select class="form-control" name="dept_id" required>
+                    <option disabled selected>Select Department Role</option>
+                    <?php
+                    $data = $connection->query("SELECT *FROM department");
+                    while ($department = $data->fetch_assoc()) :
+                    ?>
+                        <option value="<?= $department['id'] ?>"><?= $department['dept_code'] ?> - <?= $department['dept_name'] ?></option>
+                    <?php
+                    endwhile;
+                    ?>
+                </select>
             </div>
             <div class="form-group">
                 <label>New Job Label</label>

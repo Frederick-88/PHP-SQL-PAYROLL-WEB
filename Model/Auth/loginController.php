@@ -19,8 +19,8 @@ if (isset($_POST['login-user'])) {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['password'])) {
             if ($user['verify_token'] == null) {
-                $_SESSION['response'] = "Please Verify your account first!" .  " Have not receive email yet? <a href='" . $link_address . "'>Send Verification email.</a>";
-                $_SESSION['res-type'] = "danger";
+                $_SESSION['login-response'] = "Please Verify your account first!" .  " Have not receive email yet? <a href='" . $link_address . "'>Send Verification email.</a>";
+                $_SESSION['login-res-type'] = "danger";
 
                 header('location: ../../View/login.php');
             } else {
@@ -28,9 +28,7 @@ if (isset($_POST['login-user'])) {
                 $_SESSION['login'] = true;
                 $_SESSION['role'] = $user['group_name'];
                 $_SESSION['temp_role'] = $user['group_name'];
-                $_SESSION['response'] = 'Welcome!';
-                $_SESSION['res-type'] = "success";
-                header('location: ../../View/index.php');
+                header('location: ../../View/index.php?response=Welcome&res-type=success');
                 exit();
             }
         } else {
@@ -41,8 +39,8 @@ if (isset($_POST['login-user'])) {
     }
 
     if (count($errors) > 0) {
-        $_SESSION['response'] = $errors['login_fail'];
-        $_SESSION['res-type'] = "danger";
+        $_SESSION['login-response'] = $errors['login_fail'];
+        $_SESSION['login-res-type'] = "danger";
         header('location: ../../View/login.php');
     }
 }

@@ -42,18 +42,8 @@
     </nav>
     <div class="container my-5">
         <h3 class="text-center font-weight-bold mb-4">Job Role Table Data</h3>
-        <!-- PHP SCRIPT -->
-        <?php require_once '../../Model/employeeController.php' ?>
-        <?php if (isset($_SESSION['response'])) { ?>
-            <div class="alert alert-<?= $_SESSION['res-type']; ?> alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <?= $_SESSION['response']; ?>
-            </div>
-        <?php }
-        unset($_SESSION['response']); ?>
-        <!-- PHP SCRIPT -->
+        <!-- Alert -->
+        <?php include '../../Component/Alert.php' ?>
 
         <div class="row">
             <div class="col-md-2 col-sm-12">

@@ -68,26 +68,26 @@ if (isset($_POST['register-user'])) {
             $mail->AltBody    = 'This is the body in plain text for non-HTML mail clients';
 
             if (!$mail->send()) {
-                $_SESSION['response'] = "failed to send email" . $mail->ErrorInfo;
-                $_SESSION['res-type'] = "danger";
+                $_SESSION['register-response'] = "failed to send email" . $mail->ErrorInfo;
+                $_SESSION['register-res-type'] = "danger";
 
                 header('location:../../View/register.php');
                 exit();
             } else {
                 $_SESSION['email'] = $email;
                 $_SESSION['verified'] = false;
-                $_SESSION['response'] = 'Account success registered! Please do verify on your registered email.';
-                $_SESSION['res-type'] = 'success';
+                $_SESSION['register-response'] = 'Account success registered! Please do verify on your registered email.';
+                $_SESSION['register-res-type'] = 'success';
                 // header('location: ../../View/login.php');
                 echo "<script>window.location.assign('../../View/login.php')</script>";
                 exit();
             }
         } else {
-            $_SESSION['response'] = "Database error: Could not register user";
+            $_SESSION['register-response'] = "Database error: Could not register user";
         }
     } else {
-        $_SESSION['response'] = $errors['register-email'];
-        $_SESSION['res-type'] = "danger";
+        $_SESSION['register-response'] = $errors['register-email'];
+        $_SESSION['register-res-type'] = "danger";
 
         header('location: ../../view/register.php');
     }
@@ -103,16 +103,14 @@ if (isset($_POST['verify_account'])) {
     $user  = $connection->query("UPDATE user SET verify_token = '$token', verified_at = '$verify_time' WHERE email= '$email' LIMIT 1") or die($connection->error);
 
     if (!$user) {
-        $_SESSION['response']  = "Sorry, Failed to verify your account.";
-        $_SESSION['res-type'] = "danger";
+        $_SESSION['register-response']  = "Sorry, Failed to verify your account.";
+        $_SESSION['register-res-type'] = "danger";
 
         header('location: ../../View/login.php');
     }
 
-    $_SESSION['response']    = 'Your account have been successfully verified!';
-    $_SESSION['res-type']   = 'success';
-
-    // Back to Index
+    $_SESSION['register-response']    = 'Your account have been successfully verified!';
+    $_SESSION['register-res-type']   = 'success';
     header("location: ../../View/login.php");
 }
 
@@ -157,8 +155,8 @@ if (isset($_POST['resend_verification'])) {
 
 
         if (!$mail->send()) {
-            $_SESSION['response'] = "failed to send email" . $mail->ErrorInfo;
-            $_SESSION['res-type'] = "danger";
+            $_SESSION['register-response'] = "failed to send email" . $mail->ErrorInfo;
+            $_SESSION['register-res-type'] = "danger";
 
             header('location:../../View/Email/resendVerification.php');
             exit();
@@ -166,8 +164,8 @@ if (isset($_POST['resend_verification'])) {
             $_SESSION['fullname']   = $fullname;
             $_SESSION['email']      = $email;
             $_SESSION['verified']   = false;
-            $_SESSION['response']    = 'Success Resend Verification Email! Please check your inbox.';
-            $_SESSION['res-type']   = 'success';
+            $_SESSION['register-response']    = 'Success Resend Verification Email! Please check your inbox.';
+            $_SESSION['register-res-type']   = 'success';
 
             echo "<script>window.location.assign('../../View/Email/resendVerification.php')</script>";
             exit();
@@ -177,8 +175,8 @@ if (isset($_POST['resend_verification'])) {
     }
 
     if (count($errors) > 0) {
-        $_SESSION['response']     = $errors['verify_fail'];
-        $_SESSION['res-type']    = "danger";
+        $_SESSION['register-response']     = $errors['verify_fail'];
+        $_SESSION['register-res-type']    = "danger";
 
         header('location: ../../View/Email/resendVerification.php');
     }

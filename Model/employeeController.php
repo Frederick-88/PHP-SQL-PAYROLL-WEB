@@ -2,8 +2,6 @@
 // sometimes there will be error, if not route from the root path ('/'), so try this :)
 include('/xampp/htdocs/PSW-SEM3/Payroll/Library/connection.php');
 
-session_start();
-
 $employee_id = '';
 // --------------------------
 $employee_number = '';
@@ -51,11 +49,8 @@ if (isset($_POST['SubmitEmployeeData'])) {
     // insert data to table employee DB payroll.
     mysqli_query($connection, "INSERT INTO employee (employee_number, employee_photo, name, email, dept_id ,job_position_id ,entry_date, gender, birth_place, birth_date, address, education_id, employee_term) VALUES('$employee_number','$photoInHtml ', '$name','$email','$dept_id', '$job_position_id','$entry_date','$gender', '$birth_place', '$birth_date','$address', '$education_id', '$employee_term') ") or die(mysqli_error($connection));
 
-    $_SESSION['response']    = "New Employee has been added";
-    $_SESSION['res-type']   = "success";
-
     // redirect back to employee page
-    header("location: ../View/Employee/employee.php");
+    header("location: ../View/Employee/employee.php?response=New Employee has been added&res-type=success");
 }
 if (isset($_POST['EditEmployeeData'])) {
     // get other data
@@ -89,11 +84,8 @@ if (isset($_POST['EditEmployeeData'])) {
     mysqli_query($connection, "UPDATE employee SET employee_number='$employee_number', employee_photo='$photoInHtml', name='$name', email='$email', dept_id='$dept_id',
     job_position_id='$job_position_id', entry_date='$entry_date', gender='$gender', birth_place='$birth_place', birth_date='$birth_date', address='$address', education_id='$education_id', employee_term='$employee_term' WHERE id=$employee_id") or die(mysqli_error($connection));
 
-    $_SESSION['response']    = "New Employee has been added";
-    $_SESSION['res-type']   = "success";
-
     // redirect back to employee page
-    header("location: ../View/Employee/employee.php");
+    header("location: ../View/Employee/employee.php?response=Successfully Updated Employee Record&res-type=success");
 }
 if (isset($_GET['editinfo'])) {
     $id = $_GET['editinfo'];
@@ -114,8 +106,6 @@ if (isset($_GET['deleteEmployee'])) {
     $query = "DELETE FROM employee WHERE employee_number=$employee_number";
     $statement = mysqli_query($connection, $query) or die(mysqli_error($connection));
 
-    $_SESSION['response'] = "Successfully Deleted Employee Record";
-    $_SESSION['res-type'] = "danger";
     // redirect back to employee page
-    header("location: ../View/Employee/employee.php");
+    header("location: ../View/Employee/employee.php?response=Successfully Deleted Employee Record&res-type=danger");
 }

@@ -19,7 +19,6 @@
 <body style=" font-family: Questrial, sans-serif !important;" class="bg-warning">
     <div class="container mb-5">
         <h3 class="text-center font-weight-bold mt-5 mb-3">Add Education Info</h3>
-        <!-- change below -->
         <form action="../../Model/educationController.php" method="POST">
             <div class="form-group">
                 <label>New Education Term</label>

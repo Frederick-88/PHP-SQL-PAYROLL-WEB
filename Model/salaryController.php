@@ -2,8 +2,6 @@
 // sometimes there will be error, if not route from the root path ('/'), so try this :)
 include('/xampp/htdocs/PSW-SEM3/Payroll/Library/connection.php');
 
-session_start();
-
 $salary_id = '';
 $employee_number = '';
 $employee_name = '';
@@ -25,10 +23,7 @@ if (isset($_POST['submitAddSalary'])) {
     // insert data to table
     mysqli_query($connection, "INSERT INTO salary (employee_number, bank_account, pay_month, pay_year, gross_salary, tax, net_salary) VALUES('$employee_number', '$bank_account','$pay_month','$pay_year', '$gross_salary', '$tax', '$net_salary') ") or die(mysqli_error($connection));
 
-    $_SESSION['response']    = "New Salary Info has been added";
-    $_SESSION['res-type']   = "success";
-
-    header("location: ../View/Salary/salaryAdmin.php");
+    header("location: ../View/Salary/salaryAdmin.php?response=New Salary Info has been added&res-type=success");
 }
 if (isset($_GET['editinfo'])) {
     $id = $_GET['editinfo'];
@@ -72,10 +67,7 @@ if (isset($_POST['EditSalary'])) {
     // $statement = $connection->prepare($query);
     // $statement->execute();
 
-    $_SESSION['response']    = "Successfully Updated Salary Record";
-    $_SESSION['res-type']   = "success";
-
-    header("location: ../View/Salary/salaryAdmin.php");
+    header("location: ../View/Salary/salaryAdmin.php?response=Successfully Updated Salary Record&res-type=success");
 }
 if (isset($_GET['deleteSalary'])) {
     $id = $_GET['deleteSalary'];
@@ -83,7 +75,5 @@ if (isset($_GET['deleteSalary'])) {
     $query = "DELETE FROM salary WHERE id=$id";
     $statement = mysqli_query($connection, $query) or die(mysqli_error($connection));
 
-    $_SESSION['response'] = "Successfully Deleted Salary Record";
-    $_SESSION['res-type'] = "danger";
-    header("location: ../View/Salary/salaryAdmin.php");
+    header("location: ../View/Salary/salaryAdmin.php?response=Successfully Deleted Salary Record&res-type=danger");
 }

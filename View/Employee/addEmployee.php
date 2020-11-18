@@ -1,4 +1,7 @@
-<?php require_once '../../Model/Auth/loginController.php'; ?>
+<?php
+require_once '../../Model/Auth/loginController.php';
+require_once '/xampp/htdocs/PSW-SEM3/Payroll/Library/connection.php';
+?>
 <?php if (!isset($_SESSION['login'])) {
     $_SESSION['response'] = "Hey there, please login first =)";
     $_SESSION['res-type'] = "danger";
@@ -43,7 +46,6 @@
                 <select class="form-control" name="department" required>
                     <option disabled selected>Select Department</option>
                     <?php
-                    require_once '/xampp/htdocs/PSW-SEM3/Payroll/Library/connection.php';
                     $data = $connection->query("SELECT * FROM department");
 
                     while ($departments = $data->fetch_assoc()) :
@@ -59,7 +61,6 @@
                 <select class="form-control" name="job" required>
                     <option disabled selected>Select Job Role</option>
                     <?php
-                    require_once '/xampp/htdocs/PSW-SEM3/Payroll/Library/connection.php';
                     $data = $connection->query("SELECT *,job.id AS jobId FROM job_position JOIN department ON job_position.dept_id = department.id");
 
                     while ($roles = $data->fetch_assoc()) :

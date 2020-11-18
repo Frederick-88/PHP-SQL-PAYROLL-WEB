@@ -2,8 +2,6 @@
 // sometimes there will be error, if not route from the root path ('/'), so try this :)
 include('/xampp/htdocs/PSW-SEM3/Payroll/Library/connection.php');
 
-session_start();
-
 $dept_id = '';
 $dept_code = '';
 $dept_name = '';
@@ -15,10 +13,7 @@ if (isset($_POST['submitAddDepartment'])) {
     // insert data to table
     mysqli_query($connection, "INSERT INTO department (dept_code, dept_name) VALUES('$dept_code','$dept_name') ") or die(mysqli_error($connection));
 
-    $_SESSION['response']    = "New Department has been added";
-    $_SESSION['res-type']   = "success";
-
-    header("location: ../View/Department/department.php");
+    header("location: ../View/Department/department.php?response=New Department has been added&res-type=success");
 }
 if (isset($_GET['editinfo'])) {
     $id = $_GET['editinfo'];
@@ -40,10 +35,7 @@ if (isset($_POST['submitEditDepartment'])) {
     // update table data 2nd way - mysqli way --- BETTER
     mysqli_query($connection, "UPDATE department SET dept_code='$dept_code', dept_name='$dept_name' WHERE id=$dept_id") or die(mysqli_error($connection));
 
-    $_SESSION['response']    = "Successfully Updated Department Record";
-    $_SESSION['res-type']   = "success";
-
-    header("location: ../View/Department/department.php");
+    header("location: ../View/Department/department.php?response=Successfully Updated Department Record&res-type=success");
 }
 if (isset($_GET['deleteDepartment'])) {
     $id = $_GET['deleteDepartment'];
@@ -51,7 +43,5 @@ if (isset($_GET['deleteDepartment'])) {
     $query = "DELETE FROM department WHERE id=$id";
     $statement = mysqli_query($connection, $query) or die(mysqli_error($connection));
 
-    $_SESSION['response'] = "Successfully Deleted Department Record";
-    $_SESSION['res-type'] = "danger";
-    header("location: ../View/Department/department.php");
+    header("location: ../View/Department/department.php?response=Successfully Deleted Department Record&res-type=danger");
 }

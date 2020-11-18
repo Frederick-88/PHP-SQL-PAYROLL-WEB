@@ -43,7 +43,6 @@
     <div class="mx-5 my-5">
         <h3 class="text-center font-weight-bold mb-4">Salary Table Data</h3>
         <!-- ALERTS -->
-        <?php require_once '../../Model/employeeController.php' ?>
         <?php include '../../Component/Alert.php' ?>
 
         <div class="row">
@@ -77,7 +76,6 @@
                         $result = $connection->query($query);
                         while ($fetchSalaryData = $result->fetch_assoc()) {
                         ?>
-                            <!-- PHP SCRIPT -->
                             <tr>
                                 <th scope="row"><?= $number++ ?></th>
                                 <td><?= $fetchSalaryData['name'] ?></td>

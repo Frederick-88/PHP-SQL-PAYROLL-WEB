@@ -43,7 +43,6 @@
     <div class="container my-5">
         <h3 class="text-center font-weight-bold mb-4">Employee Table Data</h3>
         <!-- ALERTS -->
-        <?php require_once '../../Model/employeeController.php' ?>
         <?php include '../../Component/Alert.php' ?>
 
         <div>

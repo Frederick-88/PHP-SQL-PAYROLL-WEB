@@ -2,8 +2,6 @@
 // sometimes there will be error, if not route from the root path ('/'), so try this :)
 include('/xampp/htdocs/PSW-SEM3/Payroll/Library/connection.php');
 
-session_start();
-
 $education_id = '';
 $education_term = '';
 
@@ -13,10 +11,7 @@ if (isset($_POST['submitAddEducation'])) {
     // insert data to table
     mysqli_query($connection, "INSERT INTO education (education_term) VALUES('$education_term') ") or die(mysqli_error($connection));
 
-    $_SESSION['response']    = "New Education has been added";
-    $_SESSION['res-type']   = "success";
-
-    header("location: ../View/Education/education.php");
+    header("location: ../View/Education/education.php?response=New Education has been added&res-type=success");
 }
 
 if (isset($_GET['editinfo'])) {
@@ -36,10 +31,7 @@ if (isset($_POST['submitEditEducation'])) {
     // update table data 2nd way - mysqli way --- BETTER
     mysqli_query($connection, "UPDATE education SET education_term='$education_term' WHERE id=$education_id") or die(mysqli_error($connection));
 
-    $_SESSION['response']    = "Successfully Updated Education Record";
-    $_SESSION['res-type']   = "success";
-
-    header("location: ../View/Education/education.php");
+    header("location: ../View/Education/education.php?response=Successfully Updated Education Record&res-type=success");
 }
 
 if (isset($_GET['deleteEducation'])) {
@@ -48,7 +40,5 @@ if (isset($_GET['deleteEducation'])) {
     $query = "DELETE FROM education WHERE id=$id";
     $statement = mysqli_query($connection, $query) or die(mysqli_error($connection));
 
-    $_SESSION['response'] = "Successfully Deleted Education Record";
-    $_SESSION['res-type'] = "danger";
-    header("location: ../View/Education/education.php");
+    header("location: ../View/Education/education.php?response=Successfully Deleted Education Record&res-type=danger");
 }

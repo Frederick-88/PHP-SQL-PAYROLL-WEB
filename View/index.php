@@ -44,23 +44,7 @@
         </nav>
 
         <!-- Alerts -->
-        <?php if (isset($_SESSION['response'])) { ?>
-            <div class="alert alert-<?= $_SESSION['res-type']; ?> alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <?php
-                echo $_SESSION['response'], ' ';
-                unset($_SESSION['response']);
-
-                if (isset($_SESSION['temp_role'])) {
-                    echo $_SESSION['temp_role'], ' of AIA.';
-                    unset($_SESSION['temp_role']);
-                }
-                ?>
-            </div>
-        <?php } ?>
-
+        <?php include '../Component/Alert.php' ?>
         <!-- Alerts -->
 
         <!-- Greeting -->
