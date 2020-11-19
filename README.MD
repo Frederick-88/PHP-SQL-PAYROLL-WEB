@@ -2,7 +2,7 @@
 
 #### Note/Description Here
 
-#### Feature :
+### Feature :
 
 - CRUD of 6 tables inside 1 DB (Soon, all gonna working well)
 - Saving history of salary paid.
