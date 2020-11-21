@@ -25,23 +25,24 @@ include('/xampp/htdocs/PSW-SEM3/Payroll/Model/employeeController.php')
     <div class="container my-5">
         <h3 class="text-center font-weight-bold mt-5 mb-3">Edit Employee Form</h3>
         <form action="../../Model/employeeController.php" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="salary_id" value="<?= $employee_id ?>">
+            <input type="hidden" name="emp-id" value="<?= $employee_id ?>">
             <div class="form-group">
                 <label>Employee-Number</label>
-                <input type="number" name="emp-number" class="form-control" placeholder="Employee-Number" required>
+                <input type="number" name="emp-number" class="form-control" placeholder="Employee-Number" value="<?= $employee_number ?>" required>
             </div>
             <div class="form-group">
                 <label>Employee Name</label>
-                <input type="text" name="emp-name" class="form-control" placeholder="Employee Name" required>
+                <input type="text" name="emp-name" class="form-control" placeholder="Employee Name" value="<?= $name ?>" required>
             </div>
             <label>Employee Photo</label>
             <div class="custom-file mb-3">
-                <input type="file" name="emp-photo" class="custom-file-input" accept="image/*" required>
+                <input type="hidden" name="old-image" value="<?= $employee_photo ?>">
+                <input type="file" name="emp-photo" class="custom-file-input" accept="image/*" value="<?= $employee_id ?>">
                 <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
             </div>
             <div class="form-group">
                 <label>Employee Email</label>
-                <input type="text" name="email" class="form-control" placeholder="Employee Email" required>
+                <input type="text" name="email" class="form-control" placeholder="Employee Email" value="<?= $email ?>" required>
             </div>
             <div class="form-group">
                 <label>Department</label>
@@ -64,12 +65,11 @@ include('/xampp/htdocs/PSW-SEM3/Payroll/Model/employeeController.php')
                 <select class="form-control" name="job" required>
                     <option disabled selected>Select Job Role</option>
                     <?php
-                    require_once '/xampp/htdocs/PSW-SEM3/Payroll/Library/connection.php';
-                    $data = $connection->query("SELECT * FROM job_position");
+                    $data = mysqli_query($connection, "SELECT *,job_position.id AS jobId FROM job_position JOIN department ON job_position.dept_id = department.id") or die(mysqli_error($connection));
 
                     while ($roles = $data->fetch_assoc()) :
                     ?>
-                        <option value="<?= $roles['id'] ?>"><?= $roles['dept_code'] ?> - <?= $roles['job_label'] ?></option>
+                        <option value="<?= $roles['jobId'] ?>"><?= $roles['dept_code'] ?> - <?= $roles['job_label'] ?></option>
                     <?php
                     endwhile;
                     ?>
@@ -77,7 +77,7 @@ include('/xampp/htdocs/PSW-SEM3/Payroll/Model/employeeController.php')
             </div>
             <div class="form-group">
                 <label>Entry Date</label>
-                <input type="date" name="entry-date" class="form-control" placeholder="Entry Date" required>
+                <input type="date" name="entry-date" class="form-control" placeholder="Entry Date" value="<?= $entry_date ?>" required>
             </div>
             <div class="form-group">
                 <label>Gender</label>
@@ -88,15 +88,15 @@ include('/xampp/htdocs/PSW-SEM3/Payroll/Model/employeeController.php')
             </div>
             <div class="form-group">
                 <label>Birth Place</label>
-                <input type="text" name="birth-place" class="form-control" placeholder="Birth Place" required>
+                <input type="text" name="birth-place" class="form-control" placeholder="Birth Place" value="<?= $birth_place ?>" required>
             </div>
             <div class="form-group">
                 <label>Birth Date</label>
-                <input type="date" name="birth-date" class="form-control" placeholder="Birth Date" required>
+                <input type="date" name="birth-date" class="form-control" placeholder="Birth Date" value="<?= $birth_date ?>" required>
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="text" name="address" class="form-control" placeholder="Address" required>
+                <input type="text" name="address" class="form-control" placeholder="Address" value="<?= $address ?>" required>
             </div>
             <div class="form-group">
                 <label>Education</label>
@@ -116,7 +116,7 @@ include('/xampp/htdocs/PSW-SEM3/Payroll/Model/employeeController.php')
             </div>
             <div class="form-group">
                 <label>Employee Term</label>
-                <input type="text" name="emp-term" class="form-control" placeholder="Employee Term" required>
+                <input type="text" name="emp-term" class="form-control" placeholder="Employee Term" value="<?= $employee_term ?>" required>
             </div>
 
             <div class="d-flex justify-content-center mt-4">

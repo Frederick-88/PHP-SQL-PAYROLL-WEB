@@ -54,7 +54,7 @@
             <div class="row">
                 <?php
                 $number = 1;
-                $query = "SELECT * FROM employee JOIN department ON employee.dept_id = department.id JOIN education ON employee.education_id = education.id JOIN job_position ON employee.job_position_id = job_position.id";
+                $query = "SELECT *, employee.id AS employeeID FROM employee JOIN department ON employee.dept_id = department.id JOIN education ON employee.education_id = education.id JOIN job_position ON employee.job_position_id = job_position.id";
                 $result = $connection->query($query);
                 while ($fetchEmployeeData = $result->fetch_assoc()) {
                 ?>
@@ -85,7 +85,7 @@
                             <a href="../../Model/employeeController.php?deleteEmployee=<?= $fetchEmployeeData['employee_number'] ?>" class="icon-delete" onclick="return confirm('Do you want to delete this employee record ?')">
                                 <i class="fas fa-times-circle"></i>
                             </a>
-                            <a href="./editEmployee.php" class="icon-edit">
+                            <a href="./editEmployee.php?editinfo=<?= $fetchEmployeeData['employeeID'] ?>" class="icon-edit">
                                 <i class="fas fa-pen-square"></i>
                             </a>
                         </div>

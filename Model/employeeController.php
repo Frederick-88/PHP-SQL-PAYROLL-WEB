@@ -54,8 +54,10 @@ if (isset($_POST['SubmitEmployeeData'])) {
 }
 if (isset($_POST['EditEmployeeData'])) {
     // get other data
+    $employee_id = $_POST['emp-id'];
     $employee_number = $_POST['emp-number'];
     $name = $_POST['emp-name'];
+    $old_image = $_POST['old-image'];
     $email = $_POST['email'];
     $dept_id = $_POST['department'];
     $job_position_id = $_POST['job'];
@@ -67,22 +69,22 @@ if (isset($_POST['EditEmployeeData'])) {
     $education_id = $_POST['education'];
     $employee_term = $_POST['emp-term'];
 
-    // image handling
-    if (isset($_FILES['emp-photo'])) {
+    // check if there is file upload
+    if ($_FILES["emp-photo"]["error"] === 4) {
+        $photoInHtml = $old_image;
+    } else {
         $image = $_FILES['emp-photo']['name'];
+
         $explode = explode('.', $image);
         $ext = end($explode);
         $photo = '../Model/userImages/' . $name . '.' . $ext;
         $photoInHtml = '../../Model/userImages/' . $name . '.' . $ext;
 
         move_uploaded_file($_FILES['emp-photo']['tmp_name'], $photo);
-    } else {
-        $photoInHtml = null;
     }
 
     // insert data to table employee DB payroll.
-    mysqli_query($connection, "UPDATE employee SET employee_number='$employee_number', employee_photo='$photoInHtml', name='$name', email='$email', dept_id='$dept_id',
-    job_position_id='$job_position_id', entry_date='$entry_date', gender='$gender', birth_place='$birth_place', birth_date='$birth_date', address='$address', education_id='$education_id', employee_term='$employee_term' WHERE id=$employee_id") or die(mysqli_error($connection));
+    mysqli_query($connection, "UPDATE employee SET employee_number='$employee_number', employee_photo='$photoInHtml', name='$name', email='$email', dept_id='$dept_id', job_position_id='$job_position_id', entry_date='$entry_date', gender='$gender', birth_place='$birth_place', birth_date='$birth_date', address='$address', education_id='$education_id', employee_term='$employee_term' WHERE id=$employee_id") or die(mysqli_error($connection));
 
     // redirect back to employee page
     header("location: ../View/Employee/employee.php?response=Successfully Updated Employee Record&res-type=success");
@@ -92,12 +94,19 @@ if (isset($_GET['editinfo'])) {
 
     $query = "SELECT * FROM employee WHERE id=$id";
     $result = $connection->query($query);
-    $karyawan = $result->fetch_assoc();
+    $employee = $result->fetch_assoc();
 
-    $employee_id = $karyawan['id'];
-    $employee_name = $karyawan['name'];
-    $employee_number = $karyawan['employee_number'];
-    $employee_division = $karyawan['division'];
+    $employee_id = $id;
+    $employee_number = $employee['employee_number'];
+    $name = $employee['name'];
+    $employee_photo = $employee['employee_photo'];;
+    $email = $employee['email'];
+    $entry_date = $employee['entry_date'];
+    $gender = $employee['gender'];
+    $birth_place = $employee['birth_place'];
+    $birth_date = $employee['birth_date'];
+    $address = $employee['address'];
+    $employee_term = $employee['employee_term'];
 }
 
 if (isset($_GET['deleteEmployee'])) {

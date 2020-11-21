@@ -66,7 +66,7 @@
                         <!-- PHP SCRIPT -->
                         <?php
                         $number = 1;
-                        // still got issue
+                        // still got issue - can user LEFT INNER / LEFT OUTER ETC. MIX.
                         $queryTotalDepartment = "SELECT COUNT(employee.id) AS matched_employee_department, department.id AS departmentId, employee.dept_id, department.dept_name, department.dept_code 
                         FROM department LEFT JOIN employee ON department.id = employee.dept_id GROUP BY employee.dept_id ORDER BY matched_employee_department ";
                         $queryDepartmentEmployeeTotal = $connection->query($queryTotalDepartment) or die(mysqli_error($connection));
