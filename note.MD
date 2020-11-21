@@ -9,5 +9,4 @@ Note, still issue in :
 what we still need to do :
 
 1. different UI for users
-2. employee edit ( i think delete add working already )
-3. reset password
+2. reset password
