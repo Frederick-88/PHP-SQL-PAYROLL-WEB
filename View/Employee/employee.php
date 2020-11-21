@@ -57,7 +57,6 @@
                 $query = "SELECT * FROM employee JOIN department ON employee.dept_id = department.id JOIN education ON employee.education_id = education.id JOIN job_position ON employee.job_position_id = job_position.id";
                 $result = $connection->query($query);
                 while ($fetchEmployeeData = $result->fetch_assoc()) {
-                    $employeeId = $fetchEmployeeData
                 ?>
                     <!-- PHP SCRIPT -->
                     <div class="col-md-3 col-6">

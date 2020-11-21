@@ -46,7 +46,7 @@ require_once '/xampp/htdocs/PSW-SEM3/Payroll/Library/connection.php';
                 <select class="form-control" name="department" required>
                     <option disabled selected>Select Department</option>
                     <?php
-                    $data = $connection->query("SELECT * FROM department");
+                    $data = mysqli_query($connection, "SELECT * FROM department") or die(mysqli_error($connection));
 
                     while ($departments = $data->fetch_assoc()) :
                     ?>
@@ -61,7 +61,7 @@ require_once '/xampp/htdocs/PSW-SEM3/Payroll/Library/connection.php';
                 <select class="form-control" name="job" required>
                     <option disabled selected>Select Job Role</option>
                     <?php
-                    $data = $connection->query("SELECT *,job.id AS jobId FROM job_position JOIN department ON job_position.dept_id = department.id");
+                    $data = mysqli_query($connection, "SELECT *,job_position.id AS jobId FROM job_position JOIN department ON job_position.dept_id = department.id") or die(mysqli_error($connection));
 
                     while ($roles = $data->fetch_assoc()) :
                     ?>

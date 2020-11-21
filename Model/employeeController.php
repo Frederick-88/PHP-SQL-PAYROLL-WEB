@@ -33,8 +33,10 @@ if (isset($_POST['SubmitEmployeeData'])) {
     $education_id = $_POST['education'];
     $employee_term = $_POST['emp-term'];
 
-    // check if there is file upload --- still fails
-    if (!$_FILES["file"]["error"] == 4) {
+    // check if there is file upload
+    if ($_FILES["emp-photo"]["error"] === 4) {
+        $photoInHtml = null;
+    } else {
         $image = $_FILES['emp-photo']['name'];
         $explode = explode('.', $image);
         $ext = end($explode);
@@ -42,8 +44,6 @@ if (isset($_POST['SubmitEmployeeData'])) {
         $photoInHtml = '../../Model/userImages/' . $name . '.' . $ext;
 
         move_uploaded_file($_FILES['emp-photo']['tmp_name'], $photo);
-    } else {
-        $photoInHtml = '-';
     }
 
     // insert data to table employee DB payroll.
@@ -77,7 +77,7 @@ if (isset($_POST['EditEmployeeData'])) {
 
         move_uploaded_file($_FILES['emp-photo']['tmp_name'], $photo);
     } else {
-        $photoInHtml = '-';
+        $photoInHtml = null;
     }
 
     // insert data to table employee DB payroll.
