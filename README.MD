@@ -1,6 +1,6 @@
 ## PHP-SQL-PAYROLL WEB
 
-#### Note/Description Here
+#### Note/Descriptions Here
 
 ### Feature :
 
