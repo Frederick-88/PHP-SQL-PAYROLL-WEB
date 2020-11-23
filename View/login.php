@@ -28,10 +28,10 @@
                             <div class="form-group">
                                 <label for="login-psw">Password</label>
                                 <input type="password" class="form-control" name="login-psw" id="login-psw" placeholder="Password" required>
+                                <a href="./Email/resetPassword.php" class="ml-1 mt-1">Forgot Password? Reset your password here.</a>
                             </div>
                             <div class="d-flex justify-content-center mt-4">
                                 <button type="submit" name="login-user" class="btn btn-light w-50 text-warning">Login</button>
-                                <!-- <a href="index.php" class="btn btn-light w-50 text-warning">Login</a> -->
                             </div>
                         </form>
                         <div class="text-center mt-3">
