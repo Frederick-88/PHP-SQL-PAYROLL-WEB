@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link active text-dark font-weight-bold" href="../index.php">Home</a>
-                    <a class="nav-item nav-link text-dark" href="../Salary/salaryAdmin.php">Salary</a>
+                    <a class="nav-item nav-link text-dark" href="../Salary/salary.php">Salary</a>
                     <a class="nav-item nav-link text-dark" href="../Employee/employee.php">Employee</a>
                     <a class="nav-item nav-link text-dark" href="#">Department</a>
                     <a class="nav-item nav-link text-dark" href="../Job/job.php">Job Roles</a>
@@ -48,7 +48,9 @@
         <div class="row">
             <div class="col-md-2 col-sm-12">
                 <a href="../index.php" class="btn btn-primary">Back</a>
-                <a href="./addDepartment.php" class="btn btn-warning my-3">Add Department</a>
+                <?php if ($_SESSION['role'] === 'admin') : ?>
+                    <a href="./addDepartment.php" class="btn btn-warning my-3">Add Department</a>
+                <?php endif; ?>
             </div>
             <div class="col-md-10 col-sm-12 table-responsive">
                 <p class="text-danger font-weight-bold my-0">*slide right to see more (for smaller screens)</p>
@@ -59,14 +61,16 @@
                             <th scope="col">Department Code</th>
                             <th scope="col">Department Name</th>
                             <th scope="col">Number of employees</th>
-                            <th scope="col">Actions</th>
+                            <?php if ($_SESSION['role'] === 'admin') : ?>
+                                <th scope="col">Actions</th>
+                            <?php endif; ?>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- PHP SCRIPT -->
                         <?php
                         $number = 1;
-                        // still got issue - can user LEFT INNER / LEFT OUTER ETC. MIX.
+                        // still got issue - can user INNER / LEFT OUTER ETC. MIX.
                         $queryTotalDepartment = "SELECT COUNT(employee.id) AS matched_employee_department, department.id AS departmentId, employee.dept_id, department.dept_name, department.dept_code 
                         FROM department LEFT JOIN employee ON department.id = employee.dept_id GROUP BY employee.dept_id ORDER BY matched_employee_department ";
                         $queryDepartmentEmployeeTotal = $connection->query($queryTotalDepartment) or die(mysqli_error($connection));
@@ -79,10 +83,12 @@
                                 <td><?= $fetchDepartmentData['dept_code'] ?></td>
                                 <td><?= $fetchDepartmentData['dept_name'] ?></td>
                                 <td><?= $fetchDepartmentData['matched_employee_department'] ?></td>
-                                <td>
-                                    <a href="editDepartment.php?editinfo=<?= $fetchDepartmentData['departmentId'] ?>" class="btn btn-success edit-btn">Edit</a>
-                                    <a href="../../Model/departmentController.php?deleteDepartment=<?= $fetchDepartmentData['departmentId'] ?>" class="btn btn-danger" onclick="return confirm('Do you want to delete this employee record ?')">Delete</a>
-                                </td>
+                                <?php if ($_SESSION['role'] === 'admin') : ?>
+                                    <td>
+                                        <a href="editDepartment.php?editinfo=<?= $fetchDepartmentData['departmentId'] ?>" class="btn btn-success edit-btn">Edit</a>
+                                        <a href="../../Model/departmentController.php?deleteDepartment=<?= $fetchDepartmentData['departmentId'] ?>" class="btn btn-danger" onclick="return confirm('Do you want to delete this employee record ?')">Delete</a>
+                                    </td>
+                                <?php endif; ?>
                             </tr>
                         <?php } ?>
                     </tbody>

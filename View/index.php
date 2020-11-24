@@ -32,7 +32,7 @@
                 <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto">
                         <a class="nav-item nav-link active text-dark font-weight-bold" href="#">Home</a>
-                        <a class="nav-item nav-link text-dark" href="./Salary/salaryAdmin.php">Salary</a>
+                        <a class="nav-item nav-link text-dark" href="./Salary/salary.php">Salary</a>
                         <a class="nav-item nav-link text-dark" href="./Employee/employee.php">Employee</a>
                         <a class="nav-item nav-link text-dark" href="./Department/department.php">Department</a>
                         <a class="nav-item nav-link text-dark" href="./Job/job.php">Job Roles</a>
@@ -68,7 +68,7 @@
                             <i class="home__card-icon fas fa-money-check-alt"></i>
                             <h5 class="card-title font-weight-bold mt-3 p-2 bg-warning" style="border-radius: 5px;">Salary</h5>
                             <p class="card-text">View your salary.</p>
-                            <a href="./Salary/salaryAdmin.php" class="btn btn-warning">Enter <i class="fas fa-door-open"></i></a>
+                            <a href="./Salary/salary.php" class="btn btn-warning">Enter <i class="fas fa-door-open"></i></a>
                         </div>
                     </div>
                 </div>

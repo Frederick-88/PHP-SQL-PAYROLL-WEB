@@ -18,7 +18,7 @@ $errors = [];
 if (isset($_POST['login-user'])) {
     $email = $_POST['login-email'];
     $password = $_POST['login-psw'];
-    $link_address   = "../../View/Email/resendVerification.php";
+    $link_address   = "../View/Email/resendVerification.php";
 
     $query = "SELECT * FROM user JOIN group_user ON user.group_id = group_user.id WHERE user.email='$email' LIMIT 1";
     $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
@@ -127,7 +127,7 @@ if (isset($_POST['send_reset_password'])) {
             $_SESSION['register-response']    = 'Successfully send reset password email! Please check your inbox.';
             $_SESSION['register-res-type']   = 'success';
 
-            echo "<script>window.location.assign('../../View/Email/resetPassword.php')</script>";
+            echo "<script>window.location.assign('../../View/login.php')</script>";
             exit();
         }
     } else {
@@ -138,6 +138,6 @@ if (isset($_POST['send_reset_password'])) {
         $_SESSION['register-response']     = $errors['verify_fail'];
         $_SESSION['register-res-type']    = "danger";
 
-        header('location: ../../View/Email/resetPassword.php');
+        header('location: ../../View/login.php');
     }
 }

@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link active text-dark font-weight-bold" href="../index.php">Home</a>
-                    <a class="nav-item nav-link text-dark" href="../Salary/salaryAdmin.php">Salary</a>
+                    <a class="nav-item nav-link text-dark" href="../Salary/salary.php">Salary</a>
                     <a class="nav-item nav-link text-dark" href="#">Employee</a>
                     <a class="nav-item nav-link text-dark" href="../Department/department.php">Department</a>
                     <a class="nav-item nav-link text-dark" href="../Job/job.php">Job Roles</a>
@@ -46,8 +46,10 @@
         <?php include '../../Component/Alert.php' ?>
 
         <div>
-            <a href="../index.php" class="btn btn-primary">Back</a>
-            <a href="./addEmployee.php" class="btn btn-warning my-3">Add Employee</a>
+            <a href="../index.php" class="btn btn-primary mb-3">Back</a>
+            <?php if ($_SESSION['role'] === 'admin') : ?>
+                <a href="./addEmployee.php" class="btn btn-warning mb-3">Add Employee</a>
+            <?php endif; ?>
         </div>
         <div>
             <!-- PHP SCRIPT -->
@@ -82,12 +84,14 @@
                                 <p class="card-text"><b>Birth:</b> <?= $fetchEmployeeData['birth_place'] ?>, <?= $fetchEmployeeData['birth_date'] ?></p>
                                 <p class="card-text"><b>Address:</b> <?= $fetchEmployeeData['address'] ?></p>
                             </div>
-                            <a href="../../Model/employeeController.php?deleteEmployee=<?= $fetchEmployeeData['employee_number'] ?>" class="icon-delete" onclick="return confirm('Do you want to delete this employee record ?')">
-                                <i class="fas fa-times-circle"></i>
-                            </a>
-                            <a href="./editEmployee.php?editinfo=<?= $fetchEmployeeData['employeeID'] ?>" class="icon-edit">
-                                <i class="fas fa-pen-square"></i>
-                            </a>
+                            <?php if ($_SESSION['role'] === 'admin') : ?>
+                                <a href="../../Model/employeeController.php?deleteEmployee=<?= $fetchEmployeeData['employee_number'] ?>" class="icon-delete" onclick="return confirm('Do you want to delete this employee record ?')">
+                                    <i class="fas fa-times-circle"></i>
+                                </a>
+                                <a href="./editEmployee.php?editinfo=<?= $fetchEmployeeData['employeeID'] ?>" class="icon-edit">
+                                    <i class="fas fa-pen-square"></i>
+                                </a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php } ?>

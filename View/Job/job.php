@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link active text-dark font-weight-bold" href="../index.php">Home</a>
-                    <a class="nav-item nav-link text-dark" href="../Salary/salaryAdmin.php">Salary</a>
+                    <a class="nav-item nav-link text-dark" href="../Salary/salary.php">Salary</a>
                     <a class="nav-item nav-link text-dark" href="../Employee/employee.php">Employee</a>
                     <a class="nav-item nav-link text-dark" href="../Department/department.php">Department</a>
                     <a class="nav-item nav-link text-dark" href="#">Job Roles</a>
@@ -48,7 +48,9 @@
         <div class="row">
             <div class="col-md-2 col-sm-12">
                 <a href="../index.php" class="btn btn-primary">Back</a>
-                <a href="./addJob.php" class="btn btn-warning my-3">Add Job Role</a>
+                <?php if ($_SESSION['role'] === 'admin') : ?>
+                    <a href="./addJob.php" class="btn btn-warning my-3">Add Job Role</a>
+                <?php endif; ?>
             </div>
             <div class="col-md-10 col-sm-12 table-responsive">
                 <p class="text-danger font-weight-bold my-0">*slide right to see more (for smaller screens)</p>
@@ -59,7 +61,9 @@
                             <th scope="col">Department Code</th>
                             <th scope="col">Job Role Name</th>
                             <th scope="col">Number of employees</th>
-                            <th scope="col">Actions</th>
+                            <?php if ($_SESSION['role'] === 'admin') : ?>
+                                <th scope="col">Actions</th>
+                            <?php endif; ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,10 +81,12 @@
                                 <td><?= $fetchJobPositionData['dept_code'] ?></td>
                                 <td><?= $fetchJobPositionData['job_label'] ?></td>
                                 <td><?= $fetchJobPositionData['matched_employee_job_position'] ?></td>
-                                <td>
-                                    <a href="editJob.php?editinfo=<?= $fetchJobPositionData['jobId'] ?>" class="btn btn-success edit-btn">Edit</a>
-                                    <a href="../../Model/jobController.php?deleteJob=<?= $fetchJobPositionData['jobId'] ?>" class="btn btn-danger" onclick="return confirm('Do you want to delete this employee record ?')">Delete</a>
-                                </td>
+                                <?php if ($_SESSION['role'] === 'admin') : ?>
+                                    <td>
+                                        <a href="editJob.php?editinfo=<?= $fetchJobPositionData['jobId'] ?>" class="btn btn-success edit-btn">Edit</a>
+                                        <a href="../../Model/jobController.php?deleteJob=<?= $fetchJobPositionData['jobId'] ?>" class="btn btn-danger" onclick="return confirm('Do you want to delete this employee record ?')">Delete</a>
+                                    </td>
+                                <?php endif; ?>
                             </tr>
                         <?php } ?>
                     </tbody>

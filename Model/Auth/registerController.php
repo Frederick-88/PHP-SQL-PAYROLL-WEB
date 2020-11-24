@@ -146,7 +146,7 @@ if (isset($_POST['resend_verification'])) {
         //Set TCP port to connect to
         $mail->Port       = 587;
         $mail->setFrom('fred88yt@gmail.com', 'Chen Frederick from FDTECH');
-        $mail->addAddress($email, "customer1"); // Add a recipient
+        $mail->addAddress($email, "user"); // Add a recipient
         $mail->isHTML(true); // Set email format to HTML
 
         $mail->Subject    = 'AIA x FDTECH - Verify your account now';
@@ -167,7 +167,7 @@ if (isset($_POST['resend_verification'])) {
             $_SESSION['register-response']    = 'Success Resend Verification Email! Please check your inbox.';
             $_SESSION['register-res-type']   = 'success';
 
-            echo "<script>window.location.assign('../../View/Email/resendVerification.php')</script>";
+            echo "<script>window.location.assign('../../View/login.php')</script>";
             exit();
         }
     } else {
