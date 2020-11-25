@@ -75,7 +75,7 @@
                         FROM department LEFT JOIN employee ON department.id = employee.dept_id GROUP BY employee.dept_id ORDER BY matched_employee_department ";
                         $queryDepartmentEmployeeTotal = $connection->query($queryTotalDepartment) or die(mysqli_error($connection));
                         while ($fetchDepartmentData = $queryDepartmentEmployeeTotal->fetch_assoc()) {
-                            print_r($fetchDepartmentData);
+                            // print_r($fetchDepartmentData);
                         ?>
                             <!-- PHP SCRIPT -->
                             <tr>
