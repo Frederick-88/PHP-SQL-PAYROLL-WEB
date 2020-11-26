@@ -53,7 +53,7 @@
                 <?php endif; ?>
             </div>
             <div class="col-md-10 col-sm-12 table-responsive">
-                <p class="text-danger font-weight-bold my-0">*slide right to see more (for smaller screens)</p>
+                <p class="text-danger font-weight-bold my-0 d-lg-none d-md-none">*slide right to see more (for smaller screens)</p>
                 <table class="table table-warning">
                     <thead>
                         <tr>

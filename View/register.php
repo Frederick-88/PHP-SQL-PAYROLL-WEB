@@ -34,6 +34,11 @@
                                 <input type="text" name="register-fullname" class="form-control" id="register-fullname" placeholder="Enter fullname">
                             </div>
                             <div class="form-group">
+                                <label for="register-workname">Your Workname</label>
+                                <input type="text" name="register-workname" class="form-control" id="register-workname" placeholder="Enter workname">
+                                <small id="emailHelp" class="form-text">Please input your work-name as what the onboarding team informed you.</small>
+                            </div>
+                            <div class="form-group">
                                 <label for="register-psw">New Password</label>
                                 <input type="password" name="register-psw" class="form-control" id="register-psw" placeholder="Password">
                             </div>

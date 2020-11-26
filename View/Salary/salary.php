@@ -50,11 +50,34 @@
 
             <div class="row">
                 <div class="col-md-2 col-sm-12">
-                    <a href="../index.php" class="btn btn-primary">Back</a>
-                    <a href="./addSalary.php" class="btn btn-warning my-3">Add Salary</a>
+                    <h5>Generate PDF here</h5>
+                    <a href="../Pdf/salaryReport.php" class="btn btn-primary mb-3">Generate All Salary</a>
+                    <h5>Generate By Month</h5>
+                    <form action="../Pdf/salaryReport.php" method="POST">
+                        <select class="form-control" name="month-pdf" onchange="this.form.submit()" required>
+                            <option disabled selected>Select Month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </form>
+                    <hr>
+                    <div class="mt-3">
+                        <a href="../index.php" class="btn btn-primary mb-2">Back</a>
+                        <a href="./addSalary.php" class="btn btn-warning mb-2">Add Salary</a>
+                    </div>
                 </div>
                 <div class="col-md-10 col-sm-12 table-responsive ">
-                    <p class="text-danger font-weight-bold my-0">*slide right to see more (for smaller screens)</p>
+                    <p class="text-danger font-weight-bold my-0 d-lg-none">*slide right to see more (for smaller screens)</p>
                     <table class="table table-warning">
                         <thead>
                             <tr>
@@ -106,39 +129,57 @@
         <div class="container">
             <div class="main-center-container">
                 <div class="d-flex d-row mb-3">
-                    <h3 class="text-center salary-text my-0 mr-3">This is your salary info, Timo.</h3>
-                    <a href="../index.php" class="btn btn-primary">Back</a>
+                    <?php
+                    $emp_name = $_SESSION['emp-name'];
+                    $number = 1;
+                    $query = "SELECT * FROM employee WHERE employee.name = '$emp_name'";
+                    $result = $connection->query($query) or die($connection->error);
+                    if ($result->num_rows === 0) { ?>
+                        <div class="d-block">
+                            <a href="../index.php" class="btn btn-primary mb-2">Back</a>
+                            <h5 class="py-2 px-4 bg-danger text-white">No Data Found, seems you didn't put work name properly. Please contact dev-team for updates</h5>
+                        </div>
+                        <?php } else {
+                        while ($fetchName = $result->fetch_assoc()) {
+                        ?>
+                            <h3 class="text-center salary-text my-0 mr-3">This is your salary info, <?= $fetchName['name'] ?>.</h3>
+                            <a href="../index.php" class="btn btn-primary">Back</a>
                 </div>
 
                 <div class=" d-flex justify-content-center">
                     <div class="card salary-user-card">
                         <img class="card-img-top salary-user-card-image" src="https://png.pngtree.com/png-vector/20190321/ourlarge/pngtree-vector-users-icon-png-image_856952.jpg" alt="Card image cap">
                         <div class="card-body">
-                            <h4 class="card-title text-center font-weight-bold">Timo Werner</h4>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Year</th>
-                                        <th scope="col">Month</th>
-                                        <th scope="col">Salary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>2020</td>
-                                        <td>September</td>
-                                        <td>3.800.000</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>2020</td>
-                                        <td>October</td>
-                                        <td>3.800.000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                            <h4 class="card-title text-center font-weight-bold"><?= $fetchName['name'] ?></h4>
+                    <?php }
+                    } ?>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Month</th>
+                                <th scope="col">Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $emp_name = $_SESSION['emp-name'];
+                            $number = 1;
+                            $query = "SELECT * FROM salary JOIN employee ON salary.employee_number = employee.employee_number WHERE employee.name = '$emp_name'";
+                            $result = $connection->query($query) or die($connection->error);
+                            while ($fetchSalaryData = $result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <th scope="row"><?= $number++ ?></th>
+                                    <td><?= $fetchSalaryData['pay_year'] ?></td>
+                                    <td><?= $fetchSalaryData['pay_month'] ?></td>
+                                    <td><?= $fetchSalaryData['net_salary'] ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                         </div>
                     </div>
                 </div>

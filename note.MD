@@ -9,4 +9,3 @@ Note, still issue in :
 what we still need to do :
 
 1. revamp UIs
-2. print pdf feature - use "https://www.warungbelajar.com/cara-membuat-report-pdf-dengan-php-menggunakan-dompdf.html"

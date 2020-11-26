@@ -50,21 +50,30 @@ include('connection.php'); ?>
             <th>Paid Salary</th>
         </tr>
         <?php
-        $selectedMonth = isset($_GET['month']) ? $_GET['month'] : '';
+        $selectedMonth = isset($_POST['month-pdf']) ? $_POST['month-pdf'] : '';
         $number = 1;
 
         $querySalarySpecificMonth = "SELECT * FROM salary JOIN employee ON  salary.employee_number = employee.employee_number WHERE salary.pay_month = '$selectedMonth'";
         $querySalary = "SELECT * FROM salary JOIN employee ON  salary.employee_number = employee.employee_number";
         $fetchSalary = $connection->query($selectedMonth === '' ? $querySalary : $querySalarySpecificMonth) or die(mysqli_error($connection));
-        while ($salary = mysqli_fetch_array($fetchSalary)) {
-        ?>
+        if ($fetchSalary->num_rows === 0) { ?>
             <tr>
-                <td><?= $salary['name'] . "-" . $salary['employee_number'] ?></td>
-                <td><?= $salary['bank_account'] ?></td>
-                <td><?= $salary['pay_year'] . "-" . $salary['pay_month'] ?></td>
-                <td><?= $salary['net_salary'] ?></td>
+                <td>No Employee Found</td>
+                <td>No Bank Account Found</td>
+                <td>No Period Found</td>
+                <td>No Paid Salary Found</td>
             </tr>
-        <?php } ?>
+            <?php } else {
+            while ($salary = mysqli_fetch_array($fetchSalary)) {
+            ?>
+                <tr>
+                    <td><?= $salary['name'] . "-" . $salary['employee_number'] ?></td>
+                    <td><?= $salary['bank_account'] ?></td>
+                    <td><?= $salary['pay_year'] . "-" . $salary['pay_month'] ?></td>
+                    <td><?= $salary['net_salary'] ?></td>
+                </tr>
+        <?php }
+        } ?>
     </table>
 </body>
 

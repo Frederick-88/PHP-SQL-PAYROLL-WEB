@@ -19,6 +19,7 @@ $group_id = 1;
 if (isset($_POST['register-user'])) {
     $email = $_POST['register-email'];
     $fullname = $_POST['register-fullname'];
+    $workname = $_POST['register-workname'];
     $created_at = date('Y-m-d H:i:s', time());
     $emailVerifyToken = bin2hex(random_bytes(50)); // generate unique token
 
@@ -39,9 +40,9 @@ if (isset($_POST['register-user'])) {
     if (count($errors) === 0) {
         $password = password_hash($_POST['register-psw'], PASSWORD_DEFAULT); //encrypt password
 
-        $query = "INSERT INTO user SET email=?, fullname=?, password=?, group_id=?, created_at=?";
+        $query = "INSERT INTO user SET email=?, fullname=?, work_name=?, password=?, group_id=?, created_at=?";
         $stmt = $connection->prepare($query);
-        $stmt->bind_param('sssss', $email, $fullname, $password, $group_id, $created_at);
+        $stmt->bind_param('ssssss', $email, $fullname, $workname, $password, $group_id, $created_at);
         $result = $stmt->execute();
 
         if ($result) {

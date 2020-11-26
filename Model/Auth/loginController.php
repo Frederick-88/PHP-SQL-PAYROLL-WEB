@@ -34,6 +34,7 @@ if (isset($_POST['login-user'])) {
             } else {
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['login'] = true;
+                $_SESSION['emp-name'] = $user['work_name'];
                 $_SESSION['role'] = $user['group_name'];
                 $_SESSION['temp_role'] = $user['group_name'];
                 header('location: ../../View/index.php?response=Welcome&res-type=success');

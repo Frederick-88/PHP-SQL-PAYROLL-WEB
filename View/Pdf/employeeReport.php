@@ -50,18 +50,30 @@ include('connection.php'); ?>
             <th>Job-Position</th>
         </tr>
         <?php
+        $selectedDepartment = isset($_POST['department-pdf']) ? $_POST['department-pdf'] : '';
         $number = 1;
-        $queryEmployee = "SELECT * from employee JOIN department ON employee.dept_id = department.id JOIN education ON employee.education_id = education.id JOIN job_position ON employee.job_position_id = job_position.id";
-        $fetchEmployee = $connection->query($queryEmployee) or die(mysqli_error($connection));
-        while ($employee = mysqli_fetch_array($fetchEmployee)) {
-        ?>
+
+        $queryEmployeeSpecificMonth = "SELECT * FROM employee JOIN department ON employee.dept_id = department.id JOIN education ON employee.education_id = education.id JOIN job_position ON employee.job_position_id = job_position.id WHERE department.dept_name = '$selectedDepartment'";
+        $queryEmployee = "SELECT * FROM employee JOIN department ON employee.dept_id = department.id JOIN education ON employee.education_id = education.id JOIN job_position ON employee.job_position_id = job_position.id";
+        $fetchEmployee = $connection->query($selectedDepartment === '' ? $queryEmployee : $queryEmployeeSpecificMonth) or die(mysqli_error($connection));
+        if ($fetchEmployee->num_rows === 0) { ?>
             <tr>
-                <td><?= $employee['name'] . "-" . $employee['employee_number'] . "-" . $employee['employee_term'] ?></td>
-                <td><?= $employee['entry_date'] ?></td>
-                <td><?= $employee['dept_code'] ?></td>
-                <td><?= $employee['job_label'] ?></td>
+                <td>No Employee Found</td>
+                <td>No Entry Date Found</td>
+                <td>No Department Found</td>
+                <td>No Job Position Found</td>
             </tr>
-        <?php } ?>
+            <?php } else {
+            while ($employee = mysqli_fetch_array($fetchEmployee)) {
+            ?>
+                <tr>
+                    <td><?= $employee['name'] . "-" . $employee['employee_number'] . "-" . $employee['employee_term'] ?></td>
+                    <td><?= $employee['entry_date'] ?></td>
+                    <td><?= $employee['dept_code'] ?></td>
+                    <td><?= $employee['job_label'] ?></td>
+                </tr>
+        <?php }
+        } ?>
     </table>
 </body>
 

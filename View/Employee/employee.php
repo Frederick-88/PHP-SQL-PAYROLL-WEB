@@ -46,6 +46,28 @@
         <?php include '../../Component/Alert.php' ?>
 
         <div>
+            <div class="d-flex align-items-center mb-2">
+                <h5 class="mb-0">Generate PDF here</h5>
+                <i class="fas fa-arrow-alt-circle-down fa-lg ml-2"></i>
+            </div>
+            <div class="d-flex flex-wrap mb-3">
+                <a href="../Pdf/employeeReport.php" class="btn btn-primary mr-3 mt-2">Generate All Employee</a>
+                <form action="../Pdf/employeeReport.php" method="POST">
+                    <select class="form-control mt-2" name="department-pdf" onchange="this.form.submit()" required>
+                        <option disabled selected>Generate Employee by Department</option>
+                        <?php
+                        $data = mysqli_query($connection, "SELECT * FROM department") or die(mysqli_error($connection));
+
+                        while ($departments = $data->fetch_assoc()) :
+                        ?>
+                            <option value="<?= $departments['dept_name'] ?>"><?= $departments['dept_code'] ?> - <?= $departments['dept_name'] ?></option>
+                        <?php
+                        endwhile;
+                        ?>
+                    </select>
+                </form>
+            </div>
+            <hr>
             <a href="../index.php" class="btn btn-primary mb-3">Back</a>
             <?php if ($_SESSION['role'] === 'admin') : ?>
                 <a href="./addEmployee.php" class="btn btn-warning mb-3">Add Employee</a>
