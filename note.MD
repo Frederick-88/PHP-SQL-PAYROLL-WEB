@@ -8,4 +8,4 @@ Note, still issue in :
 
 what we still need to do :
 
-1. revamp UIs
+1. fix issues

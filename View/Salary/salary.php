@@ -44,7 +44,7 @@
     <!-- admin side -->
     <?php if ($_SESSION['role'] === 'admin') : ?>
         <div class="mx-5 my-5">
-            <h3 class="text-center font-weight-bold mb-4">Salary Table Data</h3>
+            <h3 class="text-center font-weight-bold mb-4">Salary Table Data <i class="fas fa-money-check-alt ml-2"></i></h3>
             <!-- ALERTS -->
             <?php include '../../Component/Alert.php' ?>
 

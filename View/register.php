@@ -18,7 +18,7 @@
 <body>
     <div class="login__bg d-flex justify-content-center">
         <div class="container">
-            <div class="row d-flex justify-content-center">
+            <div class="row d-flex justify-content-center" style="padding: 80px 10px;">
                 <div class="col-md-6 col-sm-12">
                     <div class="login__modal p-5 bg-warning text-white">
                         <h3 class="font-weight-bold text-center">AIA-REGISTER</h3>

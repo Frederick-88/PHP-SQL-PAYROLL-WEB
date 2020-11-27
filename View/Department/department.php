@@ -41,7 +41,7 @@
         </div>
     </nav>
     <div class="container my-5">
-        <h3 class="text-center font-weight-bold mb-4">Department Table Data</h3>
+        <h3 class="text-center font-weight-bold mb-4">Department Table Data <i class="fas fa-briefcase ml-2"></i></h3>
         <!-- Alert -->
         <?php include '../../Component/Alert.php' ?>
 

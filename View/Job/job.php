@@ -41,7 +41,7 @@
         </div>
     </nav>
     <div class="container my-5">
-        <h3 class="text-center font-weight-bold mb-4">Job Role Table Data</h3>
+        <h3 class="text-center font-weight-bold mb-4">Job Role Table Data <i class="fas fa-user-tag ml-2"></i></h3>
         <!-- Alert -->
         <?php include '../../Component/Alert.php' ?>
 

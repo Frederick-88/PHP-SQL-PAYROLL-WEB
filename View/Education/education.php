@@ -41,7 +41,7 @@
         </div>
     </nav>
     <div class="container my-5">
-        <h3 class="text-center font-weight-bold mb-4">Educations Table Data</h3>
+        <h3 class="text-center font-weight-bold mb-4">Educations Table Data <i class="fas fa-user-graduate ml-2"></i></h3>
         <!-- Alert -->
         <?php include '../../Component/Alert.php' ?>
 
@@ -49,7 +49,7 @@
             <div class="col-md-2 col-sm-12">
                 <a href="../index.php" class="btn btn-primary">Back</a>
                 <?php if ($_SESSION['role'] === 'admin') : ?>
-                    <a href="./addEducation.php" class="btn btn-warning my-3">Add Education Option</a>
+                    <a href="./addEducation.php" class="btn btn-warning my-3">Add Education</a>
                 <?php endif; ?>
             </div>
             <div class="col-md-10 col-sm-12 table-responsive">
