@@ -5,7 +5,7 @@
 
 ### Feature :
 
-- CRUD of 6 tables inside 1 DB
+- CRUD of 6 tables inside 1 DB ( have PK/FK, JOINS, etc like other professional DB )
 - Different UI for admin & employee, where employee only prohibited to view
 - Send Email Verification Feature every time register
 - Validation if user is verified/not when Login & Resend Email Verification Feature
