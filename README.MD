@@ -10,4 +10,4 @@
 - Send Email Verification Feature every time register
 - Validation if user is verified/not when Login & Resend Email Verification Feature
 - Reset Password Feature
-- Export to PDF by all / by specific parameters (e.g by-month, by-department, etc)
+- Export to PDF by all / by specific parameters ( e.g by-month, by-department, etc )
