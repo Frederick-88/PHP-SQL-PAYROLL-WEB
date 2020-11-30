@@ -1,7 +1,7 @@
 ## PHP-SQL-PAYROLL WEB
 
 #### This is a Fullstack Payroll Web made with PHP & MYSQL, where a company can increase the efficiency of salary management / accounting management. 
-#### With 2 roles which is admin & employee, this will do the flow and be a great help for company's salary management. =)
+#### With 2 roles which is admin & employee, this can do the flow and be a great help for company's salary management. =)
 
 ### Feature :
 
