@@ -70,10 +70,14 @@
                         <!-- PHP SCRIPT -->
                         <?php
                         $number = 1;
-                        // still got issue - can user INNER / LEFT OUTER ETC. MIX.
-                        $queryTotalDepartment = "SELECT COUNT(employee.id) AS matched_employee_department, department.id AS departmentId, employee.dept_id, department.dept_name, department.dept_code 
-                        FROM department LEFT JOIN employee ON department.id = employee.dept_id GROUP BY employee.dept_id ORDER BY matched_employee_department ";
-                        $queryDepartmentEmployeeTotal = $connection->query($queryTotalDepartment) or die(mysqli_error($connection));
+                        // comparison between failed & succeed
+
+                        // $queryTotalDepartment = "SELECT COUNT(employee.id) AS matched_employee_department, department.id AS departmentId, employee.dept_id, department.dept_name, department.dept_code 
+                        // FROM department LEFT JOIN employee ON department.id = employee.dept_id GROUP BY employee.dept_id ORDER BY matched_employee_department ";
+                        $queryDepartment = "SELECT department.id AS departmentId, department.dept_code, department.dept_name, COUNT(employee.dept_id) AS total_employee from department
+                        LEFT JOIN employee ON department.id = employee.dept_id 
+                        GROUP BY department.id ORDER BY total_employee";
+                        $queryDepartmentEmployeeTotal = $connection->query($queryDepartment) or die(mysqli_error($connection));
                         while ($fetchDepartmentData = $queryDepartmentEmployeeTotal->fetch_assoc()) {
                             // print_r($fetchDepartmentData);
                         ?>
@@ -82,11 +86,11 @@
                                 <th scope="row"><?= $number++ ?></th>
                                 <td><?= $fetchDepartmentData['dept_code'] ?></td>
                                 <td><?= $fetchDepartmentData['dept_name'] ?></td>
-                                <td><?= $fetchDepartmentData['matched_employee_department'] ?></td>
+                                <td><?= $fetchDepartmentData['total_employee'] ?></td>
                                 <?php if ($_SESSION['role'] === 'admin') : ?>
                                     <td>
                                         <a href="editDepartment.php?editinfo=<?= $fetchDepartmentData['departmentId'] ?>" class="btn btn-success edit-btn">Edit</a>
-                                        <a href="../../Model/departmentController.php?deleteDepartment=<?= $fetchDepartmentData['departmentId'] ?>" class="btn btn-danger" onclick="return confirm('Do you want to delete this employee record ?')">Delete</a>
+                                        <a href="../../Model/departmentController.php?deleteDepartment=<?= $fetchDepartmentData['departmentId'] ?>" class="btn btn-danger" onclick="return confirm('Do you want to delete this department record ?')">Delete</a>
                                     </td>
                                 <?php endif; ?>
                             </tr>

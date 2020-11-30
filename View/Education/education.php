@@ -82,7 +82,7 @@
                                 <?php if ($_SESSION['role'] === 'admin') : ?>
                                     <td>
                                         <a href="editEducation.php?editinfo=<?= $fetchEducationData['educationId'] ?>" class="btn btn-success edit-btn">Edit</a>
-                                        <a href="../../Model/educationController.php?deleteEducation=<?= $fetchEducationData['educationId'] ?>" class="btn btn-danger" onclick="return confirm('Do you want to delete this employee record ?')">Delete</a>
+                                        <a href="../../Model/educationController.php?deleteEducation=<?= $fetchEducationData['educationId'] ?>" class="btn btn-danger" onclick="return confirm('Do you want to delete this education record ?')">Delete</a>
                                     </td>
                                 <?php endif; ?>
                             </tr>

@@ -81,7 +81,7 @@ include('/xampp/htdocs/PSW-SEM3/Payroll/Model/salaryController.php')
             <div class="d-flex justify-content-center mt-4">
                 <button type="submit" name="EditSalary" class="btn btn-success w-50">Edit</button>
             </div>
-            <a href="salaryAdmin.php" class="btn btn-primary">Back</a>
+            <a href="salary.php" class="btn btn-primary">Back</a>
         </form>
     </div>
     </div>

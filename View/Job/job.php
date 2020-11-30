@@ -70,8 +70,8 @@
                         <!-- PHP SCRIPT -->
                         <?php
                         $number = 1;
-                        $queryTotalJobPosition = "SELECT COUNT(employee.id) AS matched_employee_job_position, job_position.id AS jobId, employee.dept_id, job_position.job_label, department.dept_code 
-                        FROM employee RIGHT JOIN job_position ON employee.job_position_id = job_position.id JOIN department ON department.id = job_position.dept_id GROUP BY job_position.id ORDER BY matched_employee_job_position ";
+                        $queryTotalJobPosition = "SELECT COUNT(employee.id) AS total_employee, job_position.id AS jobId, employee.dept_id, job_position.job_label, department.dept_code 
+                        FROM employee RIGHT JOIN job_position ON employee.job_position_id = job_position.id JOIN department ON department.id = job_position.dept_id GROUP BY job_position.id ORDER BY total_employee ";
                         $queryJobPositionEmployeeTotal = $connection->query($queryTotalJobPosition) or die($connection->error);
                         while ($fetchJobPositionData = $queryJobPositionEmployeeTotal->fetch_assoc()) {
                         ?>
@@ -80,11 +80,11 @@
                                 <th scope="row"><?= $number++ ?></th>
                                 <td><?= $fetchJobPositionData['dept_code'] ?></td>
                                 <td><?= $fetchJobPositionData['job_label'] ?></td>
-                                <td><?= $fetchJobPositionData['matched_employee_job_position'] ?></td>
+                                <td><?= $fetchJobPositionData['total_employee'] ?></td>
                                 <?php if ($_SESSION['role'] === 'admin') : ?>
                                     <td>
                                         <a href="editJob.php?editinfo=<?= $fetchJobPositionData['jobId'] ?>" class="btn btn-success edit-btn">Edit</a>
-                                        <a href="../../Model/jobController.php?deleteJob=<?= $fetchJobPositionData['jobId'] ?>" class="btn btn-danger" onclick="return confirm('Do you want to delete this employee record ?')">Delete</a>
+                                        <a href="../../Model/jobController.php?deleteJob=<?= $fetchJobPositionData['jobId'] ?>" class="btn btn-danger" onclick="return confirm('Do you want to delete this job record ?')">Delete</a>
                                     </td>
                                 <?php endif; ?>
                             </tr>

@@ -42,7 +42,7 @@
             <div class="d-flex justify-content-center mt-4">
                 <button type="submit" name="submitAddJob" class="btn btn-secondary w-50">Submit</button>
             </div>
-            <a href="../index.php" class="btn btn-primary">Back</a>
+            <a href="job.php" class="btn btn-primary">Back</a>
         </form>
     </div>
 </body>
