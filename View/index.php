@@ -1,8 +1,6 @@
 <?php require_once '../Model/Auth/loginController.php'; ?>
 <?php if (!isset($_SESSION['login'])) {
-    $_SESSION['response'] = "Hey there, please login first =)";
-    $_SESSION['res-type'] = "danger";
-    header('location: ../View/login.php');
+    header('location: ../../View/login.php?response=Hello, please login first.&res-type=danger');
 }
 ?>
 

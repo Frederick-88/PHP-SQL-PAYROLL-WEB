@@ -1,8 +1,6 @@
 <?php require_once '../../Model/Auth/loginController.php'; ?>
 <?php if (!isset($_SESSION['login'])) {
-    $_SESSION['response'] = "Hey there, please login first =)";
-    $_SESSION['res-type'] = "danger";
-    header('location: ../../View/login.php');
+    header('location: ../../View/login.php?response=Hello, please login first.&res-type=danger');
 }
 ?>
 
@@ -78,6 +76,10 @@ include('/xampp/htdocs/PSW-SEM3/Payroll/Model/employeeController.php')
             <div class="form-group">
                 <label>Entry Date</label>
                 <input type="date" name="entry-date" class="form-control" placeholder="Entry Date" value="<?= $entry_date ?>" required>
+            </div>
+            <div class="form-group">
+                <label>Resign Date</label>
+                <input type="date" name="resign-date" class="form-control" placeholder="Resign Date" value="<?= $resign_date ?>">
             </div>
             <div class="form-group">
                 <label>Gender</label>
