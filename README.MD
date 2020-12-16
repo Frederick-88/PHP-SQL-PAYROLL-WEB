@@ -9,5 +9,5 @@
 - Different UI for admin & employee, where employee only prohibited to view
 - Send Email Verification Feature every time register
 - Validation if user is verified/not when Login & Resend Email Verification Feature
-- Reset Password Feature
+- Reset Password Feature ( Soon )
 - Export to PDF by all / by specific parameters ( e.g by-month, by-department, etc )
