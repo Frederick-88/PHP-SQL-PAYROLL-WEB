@@ -7,7 +7,7 @@
 
 - CRUD of 6 tables inside 1 DB ( have PK/FK, JOINS, etc like other professional DB management )
 - Different UI for admin & employee, where employee only prohibited to view
-- Send Email Verification Feature every time register
+- Send Email Verification Feature every time register ( Ran on development, Soon bring to production )
 - Validation if user is verified/not when Login & Resend Email Verification Feature
-- Reset Password Feature
+- Reset Password Feature ( Ran on development, Soon bring to production )
 - Export to PDF by all / by specific parameters ( e.g by-month, by-department, etc )
